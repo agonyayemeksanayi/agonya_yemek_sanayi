@@ -2,9 +2,9 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agonya Yemek Sanayi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/jpeg" href="images/favicon.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary-color: #8b4513;
@@ -24,7 +24,7 @@
       background-color: var(--secondary-color);
       color: var(--text-color);
       line-height: 1.6;
-      padding-top: 70px;
+      padding-top: 80px;
     }
 
     header {
@@ -32,32 +32,46 @@
       top: 0;
       width: 100%;
       background-color: #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      padding: 8px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       z-index: 1000;
-      height: 60px;
     }
 
-    .logo-container {
+    .header-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 20px;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
     .logo {
-      width: 35px;
-      height: 35px;
+      width: 40px;
+      height: 40px;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 5px;
     }
 
-    .site-title {
+    h1 {
       font-size: 1.2rem;
-      font-weight: 700;
       color: var(--primary-color);
+      flex-grow: 1;
+    }
+
+    #menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: var(--primary-color);
+      margin: 4px 0;
     }
 
     nav ul {
@@ -70,28 +84,11 @@
       text-decoration: none;
       color: var(--text-color);
       font-weight: 600;
-      font-size: 0.95rem;
       transition: 0.3s;
     }
 
     nav a:hover {
       color: var(--accent-color);
-    }
-
-    .social-icons {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .social-icons img {
-      width: 22px;
-      height: 22px;
-      transition: 0.3s ease;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.1);
     }
 
     main {
@@ -110,9 +107,43 @@
       color: var(--primary-color);
     }
 
-    p {
-      font-size: 1.05rem;
+    h3 {
+      margin-top: 30px;
+      color: var(--primary-color);
+    }
+
+    p, li {
+      font-size: 1rem;
       margin-bottom: 10px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .gallery img {
+      width: calc(33.333% - 10px);
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .contact-info {
+      margin-bottom: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .social-icons img {
+      width: 40px;
+      height: 40px;
     }
 
     footer {
@@ -124,75 +155,123 @@
     }
 
     @media (max-width: 768px) {
+      #menu-toggle {
+        display: flex;
+      }
+
       nav ul {
         display: none;
-      }
-
-      .site-title {
-        font-size: 1rem;
-      }
-
-      header {
         flex-direction: column;
-        align-items: flex-start;
-        height: auto;
+        background-color: #fff;
+        position: absolute;
+        top: 60px;
+        right: 20px;
         padding: 10px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
       }
 
-      .social-icons {
-        position: absolute;
-        top: 10px;
-        right: 15px;
+      nav.active ul {
+        display: flex;
+      }
+
+      .gallery img {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img src="logo.png" alt="Agonya Logo" class="logo" />
-      <span class="site-title">Agonya Yemek Sanayi</span>
-    </div>
-    <nav>
+
+<header>
+  <div class="header-container">
+    <img src="images/yemeklogo.jpg" alt="Agonya Yemek Sanayi Logo" class="logo" />
+    <h1>Agonya Yemek Sanayi</h1>
+
+    <button id="menu-toggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav id="main-nav" role="navigation" aria-label="Ana Menü">
       <ul>
-        <li><a href="#hakkimizda">Hakkımızda</a></li>
-        <li><a href="#vizyon">Vizyon</a></li>
+        <li><a href="#tanitim">Tanıtım</a></li>
         <li><a href="#iletisim">İletişim</a></li>
       </ul>
     </nav>
+  </div>
+</header>
+
+<main>
+  <section id="tanitim" tabindex="0">
+    <h2>Kuruluş Tarihimiz ve Hizmet Amacımız</h2>
+    <p>Agonya Yemek Sanayi ailesi olarak 1 Şubat 2024 tarihinde, lezzetin kaliteyle buluştuğu bir noktada, profesyonel yemek hizmeti sunmak amacıyla kurulmuştur. Gıda sektöründeki deneyim ve birikimle her türlü toplu organizasyonunuzda sizlere en iyi şekilde yemek hizmeti sağlamak üzere yola çıkan firmamız, kısa sürede lezzetiyle olduğu kadar hijyen ve hizmet kalitesiyle adından söz etmeye başlamıştır.</p>
+    <p>Adını bulunduğumuz mevkinin Agonya ovasından alan firmamız, bereketli toprakların simgesi olarak geleneksel Türk mutfağının doğallığını ve sıcaklığını modern üretim teknikleriyle harmanlayarak sofralara taşımaya hedeflemiştir.</p>
+    <ul>
+      <li>👨‍🍳 Toplu yemekte çözüm ortağınız</li>
+      <li>🍽️ Düğün & davet organizasyonları</li>
+      <li>🍽️ Nişan & sünnet & hatim</li>
+      <li>🍽️ İftar & hayır & cenaze</li>
+    </ul>
+    <div class="gallery">
+      <img src="images/yemek1.png" alt="Yemek 1" />
+      <img src="images/yemek2.jpg" alt="Yemek 2" />
+      <img src="images/yemek5.jpg" alt="Yemek 3" />
+      <img src="images/yemek4.jpg" alt="Yemek 4" />
+      <img src="images/yemek3.jpg" alt="Yemek 5" />
+    </div>
+    <h3>Vizyonumuz ve Misyonumuz</h3>
+    <ul>
+      <li>Müşteri memnuniyetini en üst seviyede tutmak</li>
+      <li>Hijyen ve kalite standartlarından ödün vermemek</li>
+      <li>Toplu yemek sektöründe yenilikçilik</li>
+      <li>Lezzeti ve sunumuyla unutulmaz düğün yemekleri hazırlamak</li>
+      <li>Mükemmel ve doyumsuz sunumlar hazırlamak</li>
+      <li>Yerel üreticileri destekleyerek sürdürülebilir gıda zincirine katkı sağlamak</li>
+      <li>Müşteri ihtiyaçlarını doğru analiz ederek esnek ve hızlı çözümler üretmek</li>
+      <li>Sağlıklı, dengeli ve lezzetli yemekler sunmak</li>
+    </ul>
+  </section>
+
+  <section id="iletisim" tabindex="0">
+    <h2>İletişim</h2>
+    <div class="contact-info">
+      <p><strong>Adres:</strong> Cumhuriyet Mahallesi, Reşadiye Sokak, Kalkık Yenice Çanakkale</p>
+      <p><strong>Telefon:</strong> +90 544 414 93 81</p>
+      <p><strong>E-posta:</strong> <a href="mailto:emirhanozlen10@icloud.com">emirhanozlen10@icloud.com</a></p>
+    </div>
+
+    <iframe
+      src="https://www.google.com/maps/embed?..."
+      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+
     <div class="social-icons">
-      <a href="https://wa.me/905xxxxxxxxx" target="_blank">
-        <img src="whatsapp.png" alt="WhatsApp" />
+      <a href="https://wa.me/905444149381" target="_blank" rel="noopener">
+        <img src="images/whatsapp.png" alt="WhatsApp" />
       </a>
-      <a href="https://instagram.com/agonyayemeksanayi" target="_blank">
-        <img src="instagram.png" alt="Instagram" />
+      <a href="https://www.instagram.com/agonyayemeksanayi/" target="_blank" rel="noopener">
+        <img src="images/indir.jpg" alt="Instagram" />
       </a>
     </div>
-  </header>
+  </section>
+</main>
 
-  <main>
-    <section id="hakkimizda">
-      <h2>Kuruluşumuz</h2>
-      <p>Agonya Yemek Sanayi, 2010 yılında Çanakkale’nin Yenice ilçesinde kurulmuştur. Kaliteli, hijyenik ve lezzetli yemekler üretme vizyonuyla yola çıkmıştır.</p>
-    </section>
+<footer>
+  &copy; 2025 Agonya Yemek Sanayi | Tüm hakları saklıdır.<br />
+  &copy; Emirhan ÖZLEN kuruluşudur.
+</footer>
 
-    <section id="vizyon">
-      <h2>Vizyon & Misyon</h2>
-      <p><strong>Vizyonumuz:</strong> Bölgenin en güvenilir yemek firması olmak.</p>
-      <p><strong>Misyonumuz:</strong> Müşteri memnuniyetini en üst düzeyde tutarak sağlıklı ve kaliteli yemekler sunmak.</p>
-    </section>
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mainNav = document.getElementById('main-nav');
 
-    <section id="iletisim">
-      <h2>İletişim</h2>
-      <p><strong>Telefon:</strong> 0 (xxx) xxx xx xx</p>
-      <p><strong>Adres:</strong> Reşadiye Cd, Kalkım, Yenice / Çanakkale</p>
-      <p><strong>E-Posta:</strong> info@agonyayemek.com</p>
-    </section>
-  </main>
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', !expanded);
+    mainNav.classList.toggle('active');
+  });
+</script>
 
-  <footer>
-    &copy; 2025 Agonya Yemek Sanayi. Tüm hakları saklıdır.
-    &copy; Emirhan ÖZLEN kuruluşudur.
-  </footer>
 </body>
 </html>
